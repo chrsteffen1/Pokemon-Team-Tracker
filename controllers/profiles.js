@@ -67,11 +67,31 @@ function deleteGame(req, res) {
 }
 
 function edit(req,res) {
-  Profile.findById(req.params.id)
+  Profile.findById(req.params.profileId)
   .then(profile => {
+    const game = profile.games.id(req.params.gameId)
     res.render("profiles/edit", {
       profile,
+      game,
       title: 'Edit game'
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/')
+  })
+}
+
+function update(req,res){
+  Profile.findById(req.params.profileId)
+  .then(profile => {
+    const game = profile.games.id(req.params.gameId)
+    for(const prop in req.body){
+      game[prop]=req.body[prop]
+    }
+    profile.save()
+    .then(() => {
+      res.redirect(`/profiles/${profile._id}`)
     })
   })
   .catch(err => {
@@ -86,4 +106,5 @@ export {
   createGame,
   deleteGame as delete,
   edit,
+  update,
 }

@@ -38,7 +38,20 @@
     </label>
     <button type="submit">Add 🎮</button>
   </form>
-
+	<% if (profile.games.length)  {%>
+    <h2>
+      <%= isSelf ? "You have" : `${profile.name} has` %> games! Here they are!
+    </h2>
+    <% profile.games.forEach(game => { %> 
+      <h3>
+      They are playing <%= game.title %> as a <%= game.gameStyle %> game, they are on gym <%= game.gym %> 
+      </h3>
+      <% }) %> 
+  <% } else { %>
+    <h2>
+      <%= isSelf ? "You don't" : `${profile.name} doesn't` %> have any games.
+    </h2> 
+  <% } %>
 </main>
 
 <%- include('../partials/footer') %>

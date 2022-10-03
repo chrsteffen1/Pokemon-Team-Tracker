@@ -5,6 +5,11 @@
 <body>
 <nav>
   <a href="/profiles">🐯</a>
+  <a 
+  href="/games/new" <%- title === 'Add Game' ? 'class="active"' : '' %>
+>
+  ADD Game
+</a>
   <% if (user) { %>
     <a href="/auth/logout">👋</a>
   <% } else { %>

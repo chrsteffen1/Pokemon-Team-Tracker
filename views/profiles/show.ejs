@@ -16,14 +16,29 @@
     </label>
     <label >
       Game type:
-      <input type="text" name ="gameStyle" autocomplete="off">
+      <select name="gameStyle">
+        <option value="Standard">Standard</option>
+        <option value="Nuzlcke">Nuzlcke</option>
+        <option value="Randomized">Randomized</option>
+      </select>
     </label>
     <label >
       Gym:
-      <input type="number" name ="gym" autocomplete="off">
+      <select name="gym">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="E4">E4</option>
+      </select>
     </label>
     <button type="submit">Add 🎮</button>
   </form>
+
 </main>
 
 <%- include('../partials/footer') %>

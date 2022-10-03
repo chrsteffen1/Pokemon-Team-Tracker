@@ -32,12 +32,9 @@ function show(req, res) {
   })
 }
 
-function createGame(req, res) {
-  console.log('Hi game')
-}
+
 
 export {
   index,
   show,
-  createGame,
 }

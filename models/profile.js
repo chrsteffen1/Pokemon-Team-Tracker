@@ -9,7 +9,7 @@ const gameSchema = new Schema({
   } ,
   gameStyle: {
     type: String,
-    enum: ['Standard', 'Nuzlcke', 'Randomized']
+    enum: ['Standard', 'Nuzlocke', 'Randomized']
   },
   gym: {
     type: Number,
@@ -19,10 +19,25 @@ const gameSchema = new Schema({
   timestamps: true
 })
 
+const logSchema = new Schema({
+  content: String,
+}, {
+  timestamps: true
+})
+
+const pokemonSchema = new Schema({
+  name: String,
+  alive: Boolean
+  }, {
+    timestamps: true,
+  })
+
 const profileSchema = new Schema({
   name: String,
   avatar: String,
-  games: [gameSchema]
+  games: [gameSchema],
+  pokemon: [pokemonSchema],
+  log: [logSchema],
 }, {
   timestamps: true
 })

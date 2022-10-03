@@ -1,5 +1,4 @@
 import { Profile } from '../models/profile.js'
-import { Game } from '../models/game.js'
 
 
 function index(req, res) {
@@ -100,6 +99,10 @@ function update(req,res){
   })
 }
 
+function createLog(req,res){
+  console.log("Log", req.body)
+}
+
 export {
   index,
   show,
@@ -107,4 +110,5 @@ export {
   deleteGame as delete,
   edit,
   update,
+  createLog,
 }

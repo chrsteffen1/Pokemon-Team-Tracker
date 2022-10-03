@@ -44,7 +44,7 @@
     </h2>
     <% profile.games.forEach(game => { %> 
       <h3>
-      They are playing <%= game.title %> as a <%= game.gameStyle %> game, they are on gym <%= game.gym %> 
+      They are playing <a href="/profiles/<%= game._id %>/edit"><%= game.title %></a> as a <%= game.gameStyle %> game, they are on gym <%= game.gym %> 
       <% if (isSelf) { %> 
         <form 
           action="/profiles/games/<%= game._id %>?_method=DELETE" 

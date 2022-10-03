@@ -66,9 +66,24 @@ function deleteGame(req, res) {
   })
 }
 
+function edit(req,res) {
+  Profile.findById(req.params.id)
+  .then(profile => {
+    res.render("profiles/edit", {
+      profile,
+      title: 'Edit game'
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/')
+  })
+}
+
 export {
   index,
   show,
   createGame,
   deleteGame as delete,
+  edit,
 }

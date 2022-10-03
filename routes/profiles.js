@@ -7,6 +7,8 @@ const router = Router()
 
 router.get('/', profilesCtrl.index)
 router.get('/:id', isLoggedIn, profilesCtrl.show)
+router.post('/:id/games', isLoggedIn, profilesCtrl.createGame)
+router.delete('/games/:id', isLoggedIn, profilesCtrl.delete)
 
 
 

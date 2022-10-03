@@ -45,6 +45,15 @@
     <% profile.games.forEach(game => { %> 
       <h3>
       They are playing <%= game.title %> as a <%= game.gameStyle %> game, they are on gym <%= game.gym %> 
+      <% if (isSelf) { %> 
+        <form 
+          action="/profiles/games/<%= game._id %>?_method=DELETE" 
+          method="POST"
+          style="display: inline-block;"
+        >
+          <button type="submit">Delete <%= game.title %></button>
+        </form>
+      <% } %>
       </h3>
       <% }) %> 
   <% } else { %>

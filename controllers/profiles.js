@@ -32,9 +32,43 @@ function show(req, res) {
   })
 }
 
+function createGame(req, res) {
+  Profile.findById(req.user.profile._id)
+  .then(profile => {
+    profile.games.push(req.body)
+    profile.save()
+    .then(() => {
+      res.redirect(`/profiles/${req.user.profile._id}`)
+    })
+    .catch(err => {
+      console.log(err)
+      res.redirect(`/profiles/${req.user.profile._id}`)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect(`/profiles/${req.user.profile._id}`)
+  })
+}
 
+function deleteGame(req, res) {
+  Profile.findById(req.user.profile._id)
+  .then(profile => {
+    profile.games.remove({_id: req.params.id})
+    profile.save()
+    .then(()=> {
+      res.redirect(`/profiles/${req.user.profile._id}`)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect(`/profiles/${req.user.profile._id}`)
+  })
+}
 
 export {
   index,
   show,
+  createGame,
+  deleteGame as delete,
 }

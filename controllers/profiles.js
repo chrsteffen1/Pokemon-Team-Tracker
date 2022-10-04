@@ -86,6 +86,7 @@ function update(req,res){
   .then(profile => {
     const game = profile.games.id(req.params.gameId)
     for(const prop in req.body){
+      console.log(prop, "AHHHHHH")
       game[prop]=req.body[prop]
     }
     profile.save()
@@ -100,7 +101,20 @@ function update(req,res){
 }
 
 function createLog(req,res){
-  console.log("Log", req.body)
+  Profile.findById(req.user.profile._id)
+  .then(profile => {
+    const game = profile.games.id(req.params.gameId)
+    console.log(req.body, "HEY LOOK AT ME")
+    console.log(game, "YOU NEED THIS")
+    game.logs.push(req.body)
+    profile.save()
+    console.log(profile, "PROFILE")
+    res.redirect(`/profiles/${profile._id}`)
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/')
+  })
 }
 
 export {

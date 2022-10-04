@@ -104,11 +104,8 @@ function createLog(req,res){
   Profile.findById(req.user.profile._id)
   .then(profile => {
     const game = profile.games.id(req.params.gameId)
-    console.log(req.body, "HEY LOOK AT ME")
-    console.log(game, "YOU NEED THIS")
     game.logs.push(req.body)
     profile.save()
-    console.log(profile, "PROFILE")
     res.redirect(`/profiles/${profile._id}`)
   })
   .catch(err => {
@@ -118,6 +115,7 @@ function createLog(req,res){
 }
 
 function createPokemon(req,res){
+  console.log(req.body)
   Profile.findById(req.user.profile._id)
   .then(profile => {
     const game = profile.games.id(req.params.gameId)
@@ -131,6 +129,22 @@ function createPokemon(req,res){
   })
 }
 
+function deletePokemon(req,res) {
+  Profile.findById(req.user.profile._id)
+  .then(profile => {
+    const game = profile.games.id(req.params.gameId)
+    game.pokemon.remove({_id: req.params.id})
+    profile.save()
+    .then(()=> {
+      res.redirect(`/profiles/${req.user.profile._id}`)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect(`/profiles/${req.user.profile._id}`)
+  })
+}
+
 export {
   index,
   show,
@@ -140,4 +154,5 @@ export {
   update,
   createLog,
   createPokemon,
+  deletePokemon
 }

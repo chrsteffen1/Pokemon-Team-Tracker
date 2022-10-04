@@ -5,7 +5,10 @@ const Schema = mongoose.Schema
 
 
 const logSchema = new Schema({
-  content: String,
+  content: {
+    type: String,
+    required: true
+  },
   gym: {
     type: String,
     enum: ['1', '2', '3', '4', '5', '6', '7', '8', 'E4']
@@ -15,7 +18,10 @@ const logSchema = new Schema({
 })
 
 const pokemonSchema = new Schema({
-  name: String,
+  name: {
+    type: String,
+    required: true 
+  },
   alive: Boolean
   }, {
     timestamps: true,
@@ -24,7 +30,7 @@ const pokemonSchema = new Schema({
   const gameSchema = new Schema({
     title:{
       type: String,
-      require: true,
+      required: true,
     } ,
     gameStyle: {
       type: String,

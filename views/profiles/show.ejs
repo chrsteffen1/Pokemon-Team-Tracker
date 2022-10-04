@@ -81,6 +81,7 @@
             <button type="submit">Add Pokemon</button>
             </form>
           <% game.pokemon.forEach(function(mon) { %>
+            <h2>My Team</h2>
             <h3><%= mon.name %> </h3>
             <form 
               action="/profiles/<%= profile._id %>/games/<%= game._id %>/pokemon?_method=DELETE" 

@@ -7,7 +7,7 @@ const Schema = mongoose.Schema
 const logSchema = new Schema({
   content: String,
   gym: {
-    type: Number,
+    type: String,
     enum: ['1', '2', '3', '4', '5', '6', '7', '8', 'E4']
   },
 }, {
@@ -31,7 +31,7 @@ const pokemonSchema = new Schema({
       enum: ['Standard', 'Nuzlocke', 'Randomized']
     },
     gym: {
-      type: Number,
+      type: String,
       enum: ['1', '2', '3', '4', '5', '6', '7', '8', 'E4']
     },
     pokemon: [pokemonSchema],

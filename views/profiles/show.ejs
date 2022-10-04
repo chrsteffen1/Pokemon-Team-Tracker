@@ -71,12 +71,17 @@
           <button type="submit">Add log</button>
           </form> 
           <% game.logs.forEach(function(log) { %>
-            <tr>
-              <td><%= log.content %> </td>
-              <td>At gym <%= log.gym %> </td>
-              <td> created at <%= log.createdAt.toLocaleDateString() %></td>
-            </tr>
+              <h3><%= log.content %> </h3>
+              <h3>At gym <%= log.gym %> </h3>
+              <h3> created on <%= log.createdAt.toLocaleDateString() %></h3>
           <% }) %> 
+          <form action="/profiles/<%= profile._id %>/games/<%= game._id %>/pokemon" method="post">
+            <label>Pokemon</label>
+            <textarea name="name"></textarea>
+            <button type="submit">Add Pokemon</button>
+          <% game.pokemon.forEach(function(mon) { %>
+            <h3><%= mon.name %> </h3>
+        <% }) %> 
         </div>
       <% } %>
       </h3>

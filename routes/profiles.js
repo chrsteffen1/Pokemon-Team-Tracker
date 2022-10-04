@@ -12,6 +12,7 @@ router.delete('/games/:id', isLoggedIn, profilesCtrl.delete)
 router.get('/:profileId/games/:gameId/edit', isLoggedIn, profilesCtrl.edit)
 router.put('/:profileId/games/:gameId', isLoggedIn, profilesCtrl.update)
 router.post('/:profileId/games/:gameId/logs', isLoggedIn, profilesCtrl.createLog)
+router.post('/:profileId/games/:gameId/pokemon', isLoggedIn, profilesCtrl.createPokemon)
 
 
 

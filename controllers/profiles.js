@@ -117,6 +117,20 @@ function createLog(req,res){
   })
 }
 
+function createPokemon(req,res){
+  Profile.findById(req.user.profile._id)
+  .then(profile => {
+    const game = profile.games.id(req.params.gameId)
+    game.pokemon.push(req.body)
+    profile.save()
+    res.redirect(`/profiles/${profile._id}`)
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/')
+  })
+}
+
 export {
   index,
   show,
@@ -125,4 +139,5 @@ export {
   edit,
   update,
   createLog,
+  createPokemon,
 }

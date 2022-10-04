@@ -12,7 +12,7 @@ const pokemonSchema = new Schema({
     timestamps: true,
   })
 
-const Pokemon = mongoose.model('Pokemon', userSchema)
+const Pokemon = mongoose.model('Pokemon', pokemonSchema)
 
 export {
   Pokemon

@@ -4,7 +4,12 @@
 </head>
 <body>
 <nav>
-  <a href="/profiles">Profiles</a>
+  <a href="/profiles">profiles</a>
+  <a 
+  href="/games" <%- title === 'Add Game' ? 'class="active"' : '' %>
+>
+  ADD Game
+</a>
   <% if (user) { %>
     <a href="/auth/logout">👋</a>
   <% } else { %>

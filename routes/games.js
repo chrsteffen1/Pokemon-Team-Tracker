@@ -5,7 +5,8 @@ import * as gamesCtrl from '../controllers/games.js'
 const router = Router()
 
 
-router.get('/', isLoggedIn, gamesCtrl.index)
+router.post('/',gamesCtrl.create)
+router.get('/new', isLoggedIn,  gamesCtrl.new)
 
 export{
   router

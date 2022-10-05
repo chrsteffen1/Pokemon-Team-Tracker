@@ -2,11 +2,20 @@
 <link rel="stylesheet" href="/stylesheets/profiles/index.css">
 <%- include('../partials/nav') %>
 <section>
+  <p>Please first ensure that the Game is not in the dropdown
+    <select>
+      <% games.forEach(function(game) { %>
+        <option><%= game.title %></option>
+      <% }) %>
+    </select>
+  </p>
 <form action="/games" method="POST">
   <label >
     Title:
     <input type="text" name ="title" autocomplete="off">
   </label>
+  <button type="submit">Add 🎮</button>
+</form>
 </section>
 
 

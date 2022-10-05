@@ -47,7 +47,57 @@
       <%= isSelf ? "You have" : `${profile.name} has` %> games! Here they are!
     </h2>
     <% profile.games.forEach(game => { %> 
-        <h3><%= game.title %> </h3>
+        <h3>
+          They are playing <%= game.title %> as a <%= game.gameStyle %> game, they are on gym <%= game.gym %> 
+          <% if (isSelf) { %> 
+            <form 
+              action="/profiles/games/<%= game._id %>?_method=DELETE" 
+              method="POST"
+              style="display: inline-block;"
+            >
+              <button type="submit">Delete <%= game.title %></button>
+            </form>
+            <form action="/profiles/<%= profile._id %>/games/<%= game._id %>/logs" method="post">
+              <label>Log</label>
+              <textarea name="content"></textarea>
+              <label for="gym">Gym</label>
+              <select name="gym">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="E4">E4</option>
+              </select>
+              <button type="submit">Add log</button>
+              </form> 
+              <% games.forEach(function(log) { %>
+                  <h3><%= log.content %> </h3>
+                  <h3>At gym <%= log.gym %> </h3>
+                  <h3> created on <%= log.createdAt.toLocaleDateString() %></h3>
+              <% }) %> 
+              <form action="/profiles/<%= profile._id %>/games/<%= game._id %>/pokemon" method="post">
+                <label>Pokemon</label>
+                <textarea name="name"></textarea>
+                <button type="submit">Add Pokemon</button>
+                </form>
+              <% game.pokemon.forEach(function(mon) { %>
+                <h2>My Team</h2>
+                <h3><%= mon.name %> </h3>
+                <form 
+                  action="/profiles/<%= profile._id %>/games/<%= game._id %>/pokemon?_method=DELETE" 
+                  method="POST"
+                  style="display: inline-block;"
+                >
+                  <button type="submit">Delete <%= mon.name %></button>
+                </form>
+            <% }) %> 
+            </div>
+          <% } %>
+          </h3>
     <% }) %> 
   <% } else { %>
     <h2>

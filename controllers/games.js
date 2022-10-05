@@ -64,6 +64,7 @@ function createLog(req,res){
 }
 
 function addPokemon(req,res){
+  req.body.alive = !!req.body.alive
   Game.findById(req.params.id)
   .then(game => {
     game.pokemon.push(req.body.pokemonId)

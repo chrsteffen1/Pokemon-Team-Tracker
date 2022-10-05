@@ -2,50 +2,52 @@
 <%- include('../partials/nav') %>
 
 
-  <form action="/games/<%= game._id %>/logs" method="post">
-    <label>Log</label>
-    <textarea name="content"></textarea>
-    <label for="gym">Gym</label>
-    <select name="gym">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="E4">E4</option>
+<form action="/games/<%= game._id %>/pokemon" method="POST">
+  <label >
+    Pokemon:
+    <select name="pokemonId">
+      <% pokemon.forEach(mon => { %> 
+        <option value="<%= mon._id %>"><%= mon.name %> </option>
+        <% }) %> 
     </select>
-    <button type="submit">Add log</button>
-    </form> 
-    <% if (game.logs.length) { %> 
+  </label>
+  <label>Alive</label>
+  <input type="checkbox" name="alive" id="">
+  <button type="submit">Add</button>
+</form>
+<% game.pokemon.forEach(function(mon) { %>
+    <h2>My Team</h2>
+    <h3><%= mon.name %> </h3>
+    <form 
+      action="/games/<%= game._id %>/pokemon/<%= mon._id %>?_method=DELETE" 
+      method="POST"
+      style="display: inline-block;"
+    >
+      <button type="submit">Delete <%= mon.name %></button>
+    </form>
+<% }) %> 
+<form action="/games/<%= game._id %>/logs" method="post">
+  <label>Log</label>
+  <textarea name="content"></textarea>
+  <label for="gym">Gym</label>
+  <select name="gym">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="E4">E4</option>
+  </select>
+  <button type="submit">Add log</button>
+  </form> 
+  <% if (game.logs.length) { %> 
       <% game.logs.forEach(function(log) { %>     
         <h3><%= log.content %> </h3>
         <h3>At gym <%= log.gym %> </h3>
         <h3> created on <%= log.createdAt.toLocaleDateString() %></h3>
-        <form action="/games/<%= game._id %>/pokemon" method="POST">
-          <label >
-            Pokemon:
-            <select name="pokemonId">
-              <% pokemon.forEach(mon => { %> 
-                <option value="<%= mon._id %>"><%= mon.name %> </option>
-                <% }) %> 
-            </select>
-          </label>
-          <button type="submit">Add</button>
-        </form>
-    <% game.pokemon.forEach(function(mon) { %>
-      <h2>My Team</h2>
-      <h3><%= mon.name %> </h3>
-      <form 
-        action="/games/<%= game._id %>/pokemon/<%= mon._id %>?_method=DELETE" 
-        method="POST"
-        style="display: inline-block;"
-      >
-        <button type="submit">Delete <%= mon.name %></button>
-      </form>
-  <% }) %> 
       <% }) %> 
     <% } %> 
   </div>

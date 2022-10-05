@@ -59,7 +59,6 @@ function show(req, res) {
 function deleteGame(req, res) {
   Profile.findById(req.params.profileId)
   .then(profile => {
-    console.log(req.params.profileId, "HEYOOO")
     profile.games.remove(req.params.gameId)
     profile.save()
     .then(()=> {
@@ -107,19 +106,7 @@ function update(req,res){
   })
 }
 
-function createLog(req,res){
-  Profile.findById(req.user.profile._id)
-  .then(profile => {
-    const game = profile.games.id(req.params.gameId)
-    game.logs.push(req.body)
-    profile.save()
-    res.redirect(`/profiles/${profile._id}`)
-  })
-  .catch(err => {
-    console.log(err)
-    res.redirect('/')
-  })
-}
+
 
 function createPokemon(req,res){
   console.log(req.body)
@@ -172,7 +159,7 @@ export {
   deleteGame as delete,
   edit,
   update,
-  createLog,
+
   createPokemon,
   deletePokemon,
   addGame

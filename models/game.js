@@ -4,6 +4,10 @@ const Schema = mongoose.Schema
 
 const logSchema = new Schema({
   content: String,
+  gym: {
+    type: Number,
+    enum: ['1', '2', '3', '4', '5', '6', '7', '8', 'E4']
+  },
 }, {
   timestamps: true
 })
@@ -18,12 +22,8 @@ const gameSchema = new Schema({
     type: String,
     enum: ['Standard', 'Nuzlcke', 'Randomized']
   },
-  gym: {
-    type: Number,
-    enum: ['1', '2', '3', '4', '5', '6', '7', '8', 'E4']
-  },
   pokemon: [{type: Schema.Types.ObjectId, ref: 'Pokemon'}],
-  log: [logSchema],
+  logs: [logSchema],
 }, {
   timestamps: true
 })

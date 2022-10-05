@@ -37,25 +37,6 @@ function show(req, res) {
   })
 }
 
-// function createGame(req, res) {
-//   Profile.findById(req.user.profile._id)
-//   .then(profile => {
-//     profile.games.push(req.body)
-//     profile.save()
-//     .then(() => {
-//       res.redirect(`/profiles/${req.user.profile._id}`)
-//     })
-//     .catch(err => {
-//       console.log(err)
-//       res.redirect(`/profiles/${req.user.profile._id}`)
-//     })
-//   })
-//   .catch(err => {
-//     console.log(err)
-//     res.redirect(`/profiles/${req.user.profile._id}`)
-//   })
-// }
-
 function deleteGame(req, res) {
   Profile.findById(req.params.profileId)
   .then(profile => {

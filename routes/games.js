@@ -9,6 +9,8 @@ router.post('/', isLoggedIn, gamesCtrl.create)
 router.get('/new', isLoggedIn,  gamesCtrl.new)
 router.get('/:id', isLoggedIn, gamesCtrl.show)
 router.post('/:id/logs', isLoggedIn, gamesCtrl.createLog)
+router.post('/:id/pokemon', isLoggedIn, gamesCtrl.addPokemon)
+
 
 export{
   router

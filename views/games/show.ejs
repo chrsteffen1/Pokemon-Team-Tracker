@@ -24,6 +24,28 @@
         <h3><%= log.content %> </h3>
         <h3>At gym <%= log.gym %> </h3>
         <h3> created on <%= log.createdAt.toLocaleDateString() %></h3>
+        <form action="/games/<%= game._id %>/pokemon" method="POST">
+          <label >
+            Pokemon:
+            <select name="pokemonId">
+              <% pokemon.forEach(mon => { %> 
+                <option value="<%= mon._id %>"><%= mon.name %> </option>
+                <% }) %> 
+            </select>
+          </label>
+          <button type="submit">Add</button>
+        </form>
+    <% game.pokemon.forEach(function(mon) { %>
+      <h2>My Team</h2>
+      <h3><%= mon.name %> </h3>
+      <form 
+        action="/games/<%= game._id %>/pokemon?_method=DELETE" 
+        method="POST"
+        style="display: inline-block;"
+      >
+        <button type="submit">Delete <%= mon.name %></button>
+      </form>
+  <% }) %> 
       <% }) %> 
     <% } %> 
   </div>

@@ -8,7 +8,6 @@ const router = Router()
 router.get('/', profilesCtrl.index)
 router.get('/:id', isLoggedIn, profilesCtrl.show)
 router.delete('/:profileId/games/:gameId', isLoggedIn, profilesCtrl.delete)
-
 router.put('/:profileId/games/:gameId', isLoggedIn, profilesCtrl.update)
 
 router.post('/:profileId/games/:gameId/pokemon', isLoggedIn, profilesCtrl.createPokemon)

@@ -1,5 +1,5 @@
 import { Game } from '../models/game.js'
-import { Profile } from '../models/profile.js'
+import { Pokemon } from '../models/pokemon.js'
 
 
 function create(req,res){
@@ -26,17 +26,17 @@ function newGame(req,res){
 
 function show(req,res){
   Game.findById(req.params.id)
-  // .populate('meals')
+  .populate('pokemon')
   .then(game => {
-    // Meal.find({_id: {$nin: flight.meals}})
-    // .then(meals => {
-      // const isSelf = profile._id.equals(req.user.profile._id)
+    console.log(Pokemon, 'HIIIII')
+    Pokemon.find({_id: {$nin: game.pokemon}})
+    .then(pokemon => {
       res.render('games/show', { 
-        title: 'Game Details', 
+        title: 'pokemon', 
         game,
-        // isSelf,
+        pokemon,
       })    
-    // })
+    })
   })
   .catch(err => {
     console.log(err)
@@ -64,9 +64,21 @@ function createLog(req,res){
   })
 }
 
+function addPokemon(req,res){
+  Game.findById(req.params.id)
+  .then(game => {
+    game.pokemon.push(req.body.pokemonId)
+    game.save()
+		.then(() => {
+      res.redirect(`/games/${game._id}`)
+		})
+  })
+}
+
 export{
   create,
   newGame as new,
   createLog,
   show,
+  addPokemon,
 }

@@ -51,11 +51,11 @@
           They are playing <%= game.title %> as a <%= game.gameStyle %> game, they are on gym <%= game.gym %> 
           <% if (isSelf) { %> 
             <form 
-              action="/profiles/games/<%= game._id %>?_method=DELETE" 
+              action="/profiles/<%= profile._id %>/games/<%= game._id %>?_method=DELETE" 
               method="POST"
               style="display: inline-block;"
             >
-              <button type="submit">Delete <%= game.title %></button>
+              <button>Delete <%= game.title %></button>
             </form>
             <form action="/profiles/<%= profile._id %>/games/<%= game._id %>/logs" method="post">
               <label>Log</label>

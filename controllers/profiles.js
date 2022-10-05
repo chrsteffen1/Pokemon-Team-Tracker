@@ -57,9 +57,10 @@ function show(req, res) {
 // }
 
 function deleteGame(req, res) {
-  Profile.findById(req.user.profile._id)
+  Profile.findById(req.params.profileId)
   .then(profile => {
-    profile.games.remove({_id: req.params.id})
+    console.log(req.params.profileId, "HEYOOO")
+    profile.games.remove(req.params.gameId)
     profile.save()
     .then(()=> {
       res.redirect(`/profiles/${req.user.profile._id}`)

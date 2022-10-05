@@ -9,6 +9,7 @@
       alt="<%= profile.name %>'s avatar"
     >
   </div>
+  <% if (isSelf) { %> 
   <form action="/profiles/<%= profile._id %>/games" method="POST">
     <label >
       Title:
@@ -42,13 +43,14 @@
     </label>
     <button type="submit">Add 🎮</button>
   </form>
+  <% } %> 
 	<% if (profile.games.length)  {%>
     <h2>
       <%= isSelf ? "You have" : `${profile.name} has` %> games! Here they are!
     </h2>
     <% profile.games.forEach(game => { %> 
         <h3>
-          They are playing <a href="/games/<%= game._id %>"><%= game.title %></a> as a <%= game.gameStyle %> game, they are on gym <%= game.gym %> 
+          They are playing <a href="/games/<%= game._id %>"><%= game.title %></a> as a <%= game.gameStyle %> game.
           <% if (isSelf) { %> 
             <form 
               action="/profiles/<%= profile._id %>/games/<%= game._id %>?_method=DELETE" 
@@ -57,6 +59,7 @@
             >
               <button>Delete <%= game.title %></button>
             </form>
+
           <% } %>
           </h3>
     <% }) %> 

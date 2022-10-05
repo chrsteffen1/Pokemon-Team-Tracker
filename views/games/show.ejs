@@ -2,6 +2,33 @@
 <%- include('../partials/nav') %>
 
 
+  <form action="/games/<%= game._id %>/logs" method="post">
+    <label>Log</label>
+    <textarea name="content"></textarea>
+    <label for="gym">Gym</label>
+    <select name="gym">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="E4">E4</option>
+    </select>
+    <button type="submit">Add log</button>
+    </form> 
+    <% if (game.logs.length) { %> 
+      <% game.logs.forEach(function(log) { %>     
+        <h3><%= log.content %> </h3>
+        <h3>At gym <%= log.gym %> </h3>
+        <h3> created on <%= log.createdAt.toLocaleDateString() %></h3>
+      <% }) %> 
+    <% } %> 
+  </div>
+
+
 
 
 <%- include('../partials/footer') %>

@@ -71,21 +71,7 @@ function deleteGame(req, res) {
   })
 }
 
-function edit(req,res) {
-  Profile.findById(req.params.profileId)
-  .then(profile => {
-    const game = profile.games.id(req.params.gameId)
-    res.render("profiles/edit", {
-      profile,
-      game,
-      title: 'Edit game'
-    })
-  })
-  .catch(err => {
-    console.log(err)
-    res.redirect('/')
-  })
-}
+
 
 function update(req,res){
   Profile.findById(req.params.profileId)
@@ -157,9 +143,7 @@ export {
   show,
   // createGame,
   deleteGame as delete,
-  edit,
   update,
-
   createPokemon,
   deletePokemon,
   addGame

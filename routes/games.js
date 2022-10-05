@@ -8,7 +8,7 @@ const router = Router()
 router.post('/',gamesCtrl.create)
 router.get('/new', isLoggedIn,  gamesCtrl.new)
 router.get('/:id', isLoggedIn, gamesCtrl.show)
-router.post('/:gameId/logs', isLoggedIn, gamesCtrl.createLog)
+router.post('/:id/logs', isLoggedIn, gamesCtrl.createLog)
 
 export{
   router

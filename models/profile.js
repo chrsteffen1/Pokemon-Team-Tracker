@@ -50,7 +50,7 @@ const pokemonSchema = new Schema({
 const profileSchema = new Schema({
   name: String,
   avatar: String,
-  games: [gameSchema],
+  games: [{type: Schema.Types.ObjectId, ref: 'Game'}],
 }, {
   timestamps: true
 })

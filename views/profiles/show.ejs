@@ -12,17 +12,21 @@
   <form action="/profiles/<%= profile._id %>/games" method="POST">
     <label >
       Title:
-      <input type="text" name ="title" autocomplete="off">
+      <select name="gameId">
+        <% games.forEach(game => { %> 
+          <option value="<%= game._id %>"><%= game.title %> </option>
+          <% }) %> 
+      </select>
     </label>
-    <label >
+    <!-- <label >
       Game type:
       <select name="gameStyle">
         <option value="Standard">Standard</option>
         <option value="Nuzlocke">Nuzlocke</option>
         <option value="Randomized">Randomized</option>
       </select>
-    </label>
-    <label >
+    </label> -->
+    <!-- <label >
       Gym:
       <select name="gym">
         <option value="1">1</option>
@@ -34,7 +38,7 @@
         <option value="7">7</option>
         <option value="8">8</option>
         <option value="E4">E4</option>
-      </select>
+      </select> -->
     </label>
     <button type="submit">Add 🎮</button>
   </form>
@@ -43,57 +47,7 @@
       <%= isSelf ? "You have" : `${profile.name} has` %> games! Here they are!
     </h2>
     <% profile.games.forEach(game => { %> 
-      <h3>
-      They are playing <a href="/profiles/<%= profile._id %>/games/<%= game._id %>/edit"><%= game.title %></a> as a <%= game.gameStyle %> game, they are on gym <%= game.gym %> 
-      <% if (isSelf) { %> 
-        <form 
-          action="/profiles/games/<%= game._id %>?_method=DELETE" 
-          method="POST"
-          style="display: inline-block;"
-        >
-          <button type="submit">Delete <%= game.title %></button>
-        </form>
-        <form action="/profiles/<%= profile._id %>/games/<%= game._id %>/logs" method="post">
-          <label>Log</label>
-          <textarea name="content"></textarea>
-          <label for="gym">Gym</label>
-          <select name="gym">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="E4">E4</option>
-          </select>
-          <button type="submit">Add log</button>
-          </form> 
-          <% game.logs.forEach(function(log) { %>
-              <h3><%= log.content %> </h3>
-              <h3>At gym <%= log.gym %> </h3>
-              <h3> created on <%= log.createdAt.toLocaleDateString() %></h3>
-          <% }) %> 
-          <form action="/profiles/<%= profile._id %>/games/<%= game._id %>/pokemon" method="post">
-            <label>Pokemon</label>
-            <textarea name="name"></textarea>
-            <button type="submit">Add Pokemon</button>
-            </form>
-          <% game.pokemon.forEach(function(mon) { %>
-            <h2>My Team</h2>
-            <h3><%= mon.name %> </h3>
-            <form 
-              action="/profiles/<%= profile._id %>/games/<%= game._id %>/pokemon?_method=DELETE" 
-              method="POST"
-              style="display: inline-block;"
-            >
-              <button type="submit">Delete <%= mon.name %></button>
-            </form>
-        <% }) %> 
-        </div>
-      <% } %>
-      </h3>
+        <h3><%= game.title %> </h3>
     <% }) %> 
   <% } else { %>
     <h2>

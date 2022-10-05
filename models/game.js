@@ -12,7 +12,7 @@ const logSchema = new Schema({
 const gameSchema = new Schema({
   title:{
     type: String,
-    require: true,
+    required: true,
   } ,
   gameStyle: {
     type: String,

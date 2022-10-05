@@ -1,3 +1,4 @@
+import { Game } from '../models/game.js'
 import { Profile } from '../models/profile.js'
 
 
@@ -17,12 +18,17 @@ function index(req, res) {
 
 function show(req, res) {
   Profile.findById(req.params.id)
+  .populate('games')
   .then(profile => {
     const isSelf = profile._id.equals(req.user.profile._id)
+    Game.find({_id: {$nin: profile.games}})
+    .then(games => {
     res.render("profiles/show", {
       title: `${profile.name}`,
       profile,
+      games,
       isSelf,
+    })
     })
   })
   .catch((err) => {
@@ -31,24 +37,24 @@ function show(req, res) {
   })
 }
 
-function createGame(req, res) {
-  Profile.findById(req.user.profile._id)
-  .then(profile => {
-    profile.games.push(req.body)
-    profile.save()
-    .then(() => {
-      res.redirect(`/profiles/${req.user.profile._id}`)
-    })
-    .catch(err => {
-      console.log(err)
-      res.redirect(`/profiles/${req.user.profile._id}`)
-    })
-  })
-  .catch(err => {
-    console.log(err)
-    res.redirect(`/profiles/${req.user.profile._id}`)
-  })
-}
+// function createGame(req, res) {
+//   Profile.findById(req.user.profile._id)
+//   .then(profile => {
+//     profile.games.push(req.body)
+//     profile.save()
+//     .then(() => {
+//       res.redirect(`/profiles/${req.user.profile._id}`)
+//     })
+//     .catch(err => {
+//       console.log(err)
+//       res.redirect(`/profiles/${req.user.profile._id}`)
+//     })
+//   })
+//   .catch(err => {
+//     console.log(err)
+//     res.redirect(`/profiles/${req.user.profile._id}`)
+//   })
+// }
 
 function deleteGame(req, res) {
   Profile.findById(req.user.profile._id)
@@ -145,14 +151,28 @@ function deletePokemon(req,res) {
   })
 }
 
+function addGame(req,res){
+  Profile.findById(req.params.id)
+  .then(profile => {
+    console.log(profile.games, "HIIII")
+    profile.games.push(req.body.gameId)
+    profile.save()
+		.then(() => {
+      console.log(profile.games)
+      res.redirect(`/profiles/${profile._id}`)
+		})
+  })
+}
+
 export {
   index,
   show,
-  createGame,
+  // createGame,
   deleteGame as delete,
   edit,
   update,
   createLog,
   createPokemon,
-  deletePokemon
+  deletePokemon,
+  addGame
 }

@@ -75,36 +75,36 @@ function update(req,res){
 
 
 
-function createPokemon(req,res){
-  console.log(req.body)
-  Profile.findById(req.user.profile._id)
-  .then(profile => {
-    const game = profile.games.id(req.params.gameId)
-    game.pokemon.push(req.body)
-    profile.save()
-    res.redirect(`/profiles/${profile._id}`)
-  })
-  .catch(err => {
-    console.log(err)
-    res.redirect('/')
-  })
-}
+// function createPokemon(req,res){
+//   console.log(req.body)
+//   Profile.findById(req.user.profile._id)
+//   .then(profile => {
+//     const game = profile.games.id(req.params.gameId)
+//     game.pokemon.push(req.body)
+//     profile.save()
+//     res.redirect(`/profiles/${profile._id}`)
+//   })
+//   .catch(err => {
+//     console.log(err)
+//     res.redirect('/')
+//   })
+// }
 
-function deletePokemon(req,res) {
-  Profile.findById(req.user.profile._id)
-  .then(profile => {
-    const game = profile.games.id(req.params.gameId)
-    game.pokemon.remove({_id: req.params.id})
-    profile.save()
-    .then(()=> {
-      res.redirect(`/profiles/${req.user.profile._id}`)
-    })
-  })
-  .catch(err => {
-    console.log(err)
-    res.redirect(`/profiles/${req.user.profile._id}`)
-  })
-}
+// function deletePokemon(req,res) {
+//   Profile.findById(req.user.profile._id)
+//   .then(profile => {
+//     const game = profile.games.id(req.params.gameId)
+//     game.pokemon.remove({_id: req.params.id})
+//     profile.save()
+//     .then(()=> {
+//       res.redirect(`/profiles/${req.user.profile._id}`)
+//     })
+//   })
+//   .catch(err => {
+//     console.log(err)
+//     res.redirect(`/profiles/${req.user.profile._id}`)
+//   })
+// }
 
 function addGame(req,res){
   Profile.findById(req.params.id)
@@ -125,7 +125,7 @@ export {
   // createGame,
   deleteGame as delete,
   update,
-  createPokemon,
-  deletePokemon,
+  // createPokemon,
+  // deletePokemon,
   addGame
 }

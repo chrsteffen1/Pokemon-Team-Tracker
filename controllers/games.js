@@ -28,7 +28,6 @@ function show(req,res){
   Game.findById(req.params.id)
   .populate('pokemon')
   .then(game => {
-    console.log(Pokemon, 'HIIIII')
     Pokemon.find({_id: {$nin: game.pokemon}})
     .then(pokemon => {
       res.render('games/show', { 
@@ -75,10 +74,27 @@ function addPokemon(req,res){
   })
 }
 
+function deletePokemon(req, res) {
+  Game.findById(req.params.gameId)
+  .then(game => {
+    console.log('AHHHHH')
+    game.pokemon.remove(req.params.pokemonId)
+    game.save()
+    .then(()=> {
+      res.redirect(`/games/${game._id}`)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect(`/profiles/${req.user.profile._id}`)
+  })
+}
+
 export{
   create,
   newGame as new,
   createLog,
   show,
   addPokemon,
+  deletePokemon,
 }

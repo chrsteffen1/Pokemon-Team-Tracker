@@ -10,8 +10,8 @@ router.get('/:id', isLoggedIn, profilesCtrl.show)
 router.delete('/:profileId/games/:gameId', isLoggedIn, profilesCtrl.delete)
 router.put('/:profileId/games/:gameId', isLoggedIn, profilesCtrl.update)
 
-router.post('/:profileId/games/:gameId/pokemon', isLoggedIn, profilesCtrl.createPokemon)
-router.delete('/:profileId/games/:gameId/pokemon', isLoggedIn, profilesCtrl.deletePokemon)
+// router.post('/:profileId/games/:gameId/pokemon', isLoggedIn, profilesCtrl.createPokemon)
+// router.delete('/:profileId/games/:gameId/pokemon', isLoggedIn, profilesCtrl.deletePokemon)
 router.post('/:id/games', isLoggedIn, profilesCtrl.addGame)
 
 

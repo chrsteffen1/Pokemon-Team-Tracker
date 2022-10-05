@@ -10,6 +10,7 @@ router.get('/new', isLoggedIn,  gamesCtrl.new)
 router.get('/:id', isLoggedIn, gamesCtrl.show)
 router.post('/:id/logs', isLoggedIn, gamesCtrl.createLog)
 router.post('/:id/pokemon', isLoggedIn, gamesCtrl.addPokemon)
+router.delete('/:gameId/pokemon/:pokemonId', isLoggedIn, gamesCtrl.deletePokemon)
 
 
 export{

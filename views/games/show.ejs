@@ -39,7 +39,7 @@
       <h2>My Team</h2>
       <h3><%= mon.name %> </h3>
       <form 
-        action="/games/<%= game._id %>/pokemon?_method=DELETE" 
+        action="/games/<%= game._id %>/pokemon/<%= mon._id %>?_method=DELETE" 
         method="POST"
         style="display: inline-block;"
       >

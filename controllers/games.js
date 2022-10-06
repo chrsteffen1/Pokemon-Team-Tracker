@@ -1,5 +1,6 @@
 import { Game } from '../models/game.js'
 import { Pokemon } from '../models/pokemon.js'
+import { Profile } from '../models/profile.js'
 
 
 function create(req,res){

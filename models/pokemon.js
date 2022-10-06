@@ -7,7 +7,7 @@ const pokemonSchema = new Schema({
     type: String,
     required: true 
   },
-  alive: Boolean
+  alive: {type: Boolean, default: true},
   }, {
     timestamps: true,
   })

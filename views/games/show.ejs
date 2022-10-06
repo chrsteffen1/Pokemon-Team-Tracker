@@ -11,8 +11,6 @@
         <% }) %> 
     </select>
   </label>
-  <label>Alive</label>
-  <input type="checkbox" name="alive" id="">
   <button type="submit">Add</button>
 </form>
 <% game.pokemon.forEach(function(mon) { %>
@@ -23,6 +21,8 @@
       method="POST"
       style="display: inline-block;"
     >
+    <label>Alive</label>
+    <input type="checkbox" name="alive" <%= pokemon.alive ? 'checked' : '' %> >
       <button type="submit">Delete <%= mon.name %></button>
     </form>
 <% }) %> 

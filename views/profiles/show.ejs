@@ -10,9 +10,16 @@
     >
   </div>
   <% if (isSelf) { %> 
+    <form action="/games" method="POST">
+      <label >
+        First Add your game here:
+        <input type="text" name ="title" autocomplete="off">
+      </label>
+      <button type="submit">Add 🎮</button>
+    </form>
   <form action="/profiles/<%= profile._id %>/games" method="POST">
     <label >
-      Title:
+      Now select it from the list:
       <select name="gameId">
         <% games.forEach(game => { %> 
           <option value="<%= game._id %>"><%= game.title %> </option>
@@ -27,6 +34,7 @@
         <option value="Randomized">Randomized</option>
       </select>
     </label>
+
     </label>
     <button type="submit">Add 🎮</button>
   </form>

@@ -1,0 +1,15 @@
+/* From uiverse.io by @Yaseen549 */
+.input {
+  border: none;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: #e8e8e8;
+  font-size: medium;
+  font-weight: bold;
+  max-width: 200px;
+}
+
+.input:focus {
+  outline-color: white;
+  place-content: "Enter your message!";
+}

@@ -68,6 +68,9 @@ section {
 a {
   text-decoration: none;
 }
+a:visited{
+  text-decoration: none;
+}
 
 pre {
   font-size: 14px;

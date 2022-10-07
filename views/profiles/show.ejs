@@ -30,7 +30,8 @@
         >
             <button type="submit">Delete <%= game.title %></button>
           </form>
-      <% } %>  
+      </h3>
+    <% } %>  
       <div>
         <table>
           <thead>
@@ -41,14 +42,17 @@
           <tbody>
             <% game.pokemon.forEach(function(mon) { %>
               <tr>
-                <td><%= mon.name %>                   
-                  <form 
-                  action="/profiles/<%= profile._id %>/games/<%= game._id %>/pokemon/<%= mon._id %>?_method=DELETE" 
-                  method="POST"
-                  style="display: inline-block;"
-                >
-                  <button type="submit">Release</button>
-                </form></td>
+                <td><%= mon.name %> 
+                  <% if (isSelf) { %> 
+                    <form 
+                    action="/profiles/<%= profile._id %>/games/<%= game._id %>/pokemon/<%= mon._id %>?_method=DELETE" 
+                    method="POST"
+                    style="display: inline-block;"
+                  >
+                    <button type="submit">Release</button>
+                    </form>
+                  <% } %> 
+                </td>
               </tr>
             <% }) %> 
           </tbody>
@@ -73,12 +77,13 @@
           </table>
       </div>
       <% if (isSelf) { %> 
-        <form action="/profiles/<%= profile._id %>/games/<%= game._id %>/pokemon" method="post">
-          <input type="text" name ="name" class = 'input' autocomplete="off" placeholder="Squad">
+        <div>
+          <form action="/profiles/<%= profile._id %>/games/<%= game._id %>/pokemon" method="post">
+          <input type="text" name ="name" class = 'input' autocomplete="off" placeholder="Squad" required>
           <button type="submit">Make a friend</button>
           </form>
         <form action="/profiles/<%= profile._id %>/games/<%= game._id %>/logs" method="post">
-          <input type="text" name ="content" class = 'input' autocomplete="off" placeholder="The Journey So far">
+          <input type="text" name ="content" class = 'input' autocomplete="off" placeholder="The Journey So far" required>
           <label for="gym">Gym</label>
           <select name="gym">
             <option value="1">1</option>
@@ -95,7 +100,6 @@
           </form> 
         </div>
       <% } %>
-      </h3>
     <% }) %> 
   <% } else { %>
     <h2>

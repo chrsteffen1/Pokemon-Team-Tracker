@@ -7,7 +7,7 @@ const Schema = mongoose.Schema
 const logSchema = new Schema({
   content: {
     type: String,
-    required: true
+    require: true
   },
   gym: {
     type: String,
@@ -20,7 +20,7 @@ const logSchema = new Schema({
 const pokemonSchema = new Schema({
   name: {
     type: String,
-    required: true 
+    require: true 
   },
   alive: Boolean
   }, {
@@ -30,11 +30,11 @@ const pokemonSchema = new Schema({
   const gameSchema = new Schema({
     title:{
       type: String,
-      required: true,
+      require: true,
     } ,
     gameStyle: {
       type: String,
-      required: true,
+      require: true,
     },
     pokemon: [pokemonSchema],
     logs: [logSchema],

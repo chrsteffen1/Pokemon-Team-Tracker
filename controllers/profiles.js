@@ -77,7 +77,7 @@ function edit(req,res) {
   })
   .catch(err => {
     console.log(err)
-    res.redirect('/')
+    res.redirect(`/profiles/${req.user.profile._id}`)
   })
 }
 
@@ -95,7 +95,7 @@ function update(req,res){
   })
   .catch(err => {
     console.log(err)
-    res.redirect('/')
+    res.redirect(`/profiles/${req.user.profile._id}`)
   })
 }
 
@@ -109,7 +109,7 @@ function createLog(req,res){
   })
   .catch(err => {
     console.log(err)
-    res.redirect('/')
+    res.redirect(`/profiles/${req.user.profile._id}`)
   })
 }
 
@@ -124,7 +124,7 @@ function createPokemon(req,res){
   })
   .catch(err => {
     console.log(err)
-    res.redirect('/')
+    res.redirect(`/profiles/${req.user.profile._id}`)
   })
 }
 

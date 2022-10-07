@@ -86,7 +86,7 @@ function update(req,res){
   .then(profile => {
     const game = profile.games.id(req.params.gameId)
     for(const prop in req.body){
-      console.log(prop, "AHHHHHH")
+      console.log(req.body, "AHHHHHH")
       game[prop]=req.body[prop]
     }
     profile.save()

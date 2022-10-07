@@ -36,10 +36,6 @@ const pokemonSchema = new Schema({
       type: String,
       enum: ['Standard', 'Nuzlocke', 'Randomized']
     },
-    gym: {
-      type: String,
-      enum: ['1', '2', '3', '4', '5', '6', '7', '8', 'E4']
-    },
     pokemon: [pokemonSchema],
     logs: [logSchema],
   }, {

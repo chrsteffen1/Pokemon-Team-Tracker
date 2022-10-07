@@ -10,11 +10,13 @@
       alt="<%= profile.name %>'s avatar"
     >
   </div>
-  <form action="/profiles/<%= profile._id %>/games" method="POST">
+  <% if (isSelf) {%>
+    <form action="/profiles/<%= profile._id %>/games" method="POST">
       <input type="text" name ="title" class = 'input' autocomplete="off" placeholder="Game Title">
       <input type="text" name ="gameStyle" class = 'input' autocomplete="off" value="Standard">
     <button type="submit">Add 🎮</button>
   </form>
+  <% } %>  
 	<% if (profile.games.length)  {%>
     <h2>
       <%= isSelf ? "You have" : `${profile.name} has` %> games! Here they are!

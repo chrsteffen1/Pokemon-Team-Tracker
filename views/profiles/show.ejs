@@ -36,22 +36,19 @@
           <thead>
             <tr>
               <th>My Team</th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
             <% game.pokemon.forEach(function(mon) { %>
               <tr>
-                <td><%= mon.name %></td>
-                <td>
+                <td><%= mon.name %>                   
                   <form 
                   action="/profiles/<%= profile._id %>/games/<%= game._id %>/pokemon/<%= mon._id %>?_method=DELETE" 
                   method="POST"
                   style="display: inline-block;"
                 >
-                  <button type="submit">Delete <%= mon.name %></button>
-                </form>
-                </td>
+                  <button type="submit">Release</button>
+                </form></td>
               </tr>
             <% }) %> 
           </tbody>

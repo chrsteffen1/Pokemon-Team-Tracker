@@ -34,7 +34,7 @@ const pokemonSchema = new Schema({
     } ,
     gameStyle: {
       type: String,
-      enum: ['Standard', 'Nuzlocke', 'Randomized']
+      required: true,
     },
     pokemon: [pokemonSchema],
     logs: [logSchema],

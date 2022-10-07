@@ -12,14 +12,7 @@
   </div>
   <form action="/profiles/<%= profile._id %>/games" method="POST">
       <input type="text" name ="title" class = 'input' autocomplete="off" placeholder="Game Title">
-    <label >
-      Game type:
-      <select name="gameStyle">
-        <option value="Standard">Standard</option>
-        <option value="Nuzlocke">Nuzlocke</option>
-        <option value="Randomized">Randomized</option>
-      </select>
-    </label>
+      <input type="text" name ="gameStyle" class = 'input' autocomplete="off" value="Standard">
     <button type="submit">Add 🎮</button>
   </form>
 	<% if (profile.games.length)  {%>
@@ -29,16 +22,56 @@
     <% profile.games.forEach(game => { %> 
       <h3>
       They are playing <a href="/profiles/<%= profile._id %>/games/<%= game._id %>/edit"><%= game.title %></a> as a <%= game.gameStyle %> game, they are on gym <%= game.gym %> 
-      <% if (isSelf) { %> 
-        <form 
+      <% if (isSelf) { %>
+          <form 
           action="/profiles/games/<%= game._id %>?_method=DELETE" 
           method="POST"
           style="display: inline-block;"
         >
-          <button type="submit">Delete <%= game.title %></button>
-        </form>
+            <button type="submit">Delete <%= game.title %></button>
+          </form>
+      <% } %>  
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>My Team</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% game.pokemon.forEach(function(mon) { %>
+            <tr>
+              <td><%= mon.name %></td>
+            <% }) %> 
+            </tr>
+          </tbody>
+        </table>
+        <table>
+          <thead>
+            <tr>
+              <th>My Journey</th>
+              <th>Gym No.</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% game.logs.forEach(function(log) { %>
+              <tr>
+                <td><%= log.content %></td>
+                <td><%= log.gym %></td>
+                <td><%= log.createdAt.toLocaleDateString() %></td>
+              </tr>
+            <% }) %>       
+            </tbody>
+          </table>
+      </div>
+      <% if (isSelf) { %> 
+        <form action="/profiles/<%= profile._id %>/games/<%= game._id %>/pokemon" method="post">
+          <input type="text" name ="name" class = 'input' autocomplete="off" placeholder="Squad">
+          <button type="submit">Make a friend</button>
+          </form>
         <form action="/profiles/<%= profile._id %>/games/<%= game._id %>/logs" method="post">
-          <input type="text" name ="content" class = 'input' autocomplete="off" placeholder="Game Title">
+          <input type="text" name ="content" class = 'input' autocomplete="off" placeholder="The Journey So far">
           <label for="gym">Gym</label>
           <select name="gym">
             <option value="1">1</option>
@@ -53,11 +86,6 @@
           </select>
           <button type="submit">Add log</button>
           </form> 
-          <% game.logs.forEach(function(log) { %>
-              <h3><%= log.content %> </h3>
-              <h3>At gym <%= log.gym %> </h3>
-              <h3> created on <%= log.createdAt.toLocaleDateString() %></h3>
-          <% }) %> 
         </div>
       <% } %>
       </h3>

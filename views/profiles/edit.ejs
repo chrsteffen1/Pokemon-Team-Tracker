@@ -2,15 +2,17 @@
 <link rel="stylesheet" href="/stylesheets/profiles/show.css">
 <%- include('../partials/nav') %>
 
-<section>
-  <h1>Edit Game</h1>
-  <form action="/profiles/<%= profile._id %>/games/<%= game._id %>?_method=PUT" method="post">
-    <input type="text" name ="title" class = 'input' autocomplete="off" value="<%= game.title %>">
-    <input type="text" name ="gameStyle" class = 'input' autocomplete="off" value="<%= game.gameStyle %>">
-    <button type="submit">Update</button>
-    </form>
-    <div>
-  </div>
-</section>
+<main>
+  <section>
+    <h1>Edit Game</h1>
+    <form action="/profiles/<%= profile._id %>/games/<%= game._id %>?_method=PUT" method="post">
+      <input type="text" name ="title" class = 'input' autocomplete="off" value="<%= game.title %>">
+      <input type="text" name ="gameStyle" class = 'input' autocomplete="off" value="<%= game.gameStyle %>">
+      <button type="submit">Update</button>
+      </form>
+      <div>
+    </div>
+  </section>
+</main>
 
 <%- include('../partials/footer') %>

@@ -86,7 +86,6 @@ function update(req,res){
   .then(profile => {
     const game = profile.games.id(req.params.gameId)
     for(const prop in req.body){
-      console.log(req.body, "AHHHHHH")
       game[prop]=req.body[prop]
     }
     profile.save()
@@ -133,7 +132,8 @@ function deletePokemon(req,res) {
   Profile.findById(req.user.profile._id)
   .then(profile => {
     const game = profile.games.id(req.params.gameId)
-    game.pokemon.remove({_id: req.params.id})
+    game.pokemon.remove({_id: req.params.monId})
+    console.log({_id: req.params.id})
     profile.save()
     .then(()=> {
       res.redirect(`/profiles/${req.user.profile._id}`)
